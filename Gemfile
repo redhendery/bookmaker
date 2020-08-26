@@ -7,6 +7,8 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+
+gem 'devise', '~> 4.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -26,10 +28,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # gem 'rack-cors'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 4.0'
-  gem 'factory_bot_rails', '~> 5.2'
-  gem 'rubocop', '~> 0.85.1', require: false
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', '~> 5.2'
+  gem 'rspec-rails', '~> 4.0'
+  gem 'rubocop', '~> 0.85.1', require: false
 end
 
 group :development do

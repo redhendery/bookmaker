@@ -4,3 +4,10 @@ Metrics/MethodLength:
   Max: 7
   Exclude:
     - 'bin/bundle'
+    - 'db/migrate/*'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
