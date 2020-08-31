@@ -3,6 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Renderer, type: :controller do
+
+  FactoryBot.define do
+    factory :dummy do
+      name { 'sample' }
+    end
+  end
+
   controller(ApplicationController) do
     include Renderer
 
@@ -25,29 +32,30 @@ RSpec.describe Renderer, type: :controller do
   end
 
   describe 'GET show' do
-    let(:resource) { create(:user) }
+    let(:resource) { create(:dummy, name: 'sample') }
 
     it 'renders resource with render_object method' do
       get :show, params: { id: resource.id }
 
-      resource_fields = { 'id' => resource.id, 'email' => resource.email }
+      data_fields = { 'id' => resource.id, 'name' => resource.name }
+      meta_fields = { 'resource' => 'Dummy', 'count' => 1 }
 
       expect(response.status).to eq(200)
-      expect(load_body(response)['user']).to include(resource_fields)
+      expect(load_body_data(response)).to include(data_fields)
+      expect(load_body_meta(response)).to include(meta_fields)
     end
   end
 
   describe 'POST create' do
     it 'renders resource errors with render_errors method' do
-      post :create, params: { user: { email: nil, password: nil } }
+      post :create, params: { dummy: { name: nil } }
 
       error_fields = {
-        'email' => ['can\'t be blank'],
-        'password' => ['can\'t be blank']
+        'name' => ['can\'t be blank']
       }
 
       expect(response.status).to eq(422)
-      expect(load_body(response)).to eq(error_fields)
+      expect(load_body_errors(response)).to eq(error_fields)
     end
   end
 
