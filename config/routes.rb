@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :apidocs, only: [:index]
+  resources :swagger, only: [:index]
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create]

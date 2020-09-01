@@ -15,3 +15,8 @@ Style/IfUnlessModifier:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/controllers/swagger/**/*'
