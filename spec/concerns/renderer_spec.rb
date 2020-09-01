@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Renderer, type: :controller do
-
   FactoryBot.define do
     factory :dummy do
       name { 'sample' }
@@ -28,7 +27,6 @@ RSpec.describe Renderer, type: :controller do
     def user_params
       params.require(:user).permit(:email, :password)
     end
-
   end
 
   describe 'GET show' do
@@ -58,5 +56,4 @@ RSpec.describe Renderer, type: :controller do
       expect(load_body_errors(response)).to eq(error_fields)
     end
   end
-
 end
